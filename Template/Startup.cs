@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Template.Data.Context;
+using Template.IoC;
 
 namespace Template
 {
@@ -24,6 +25,8 @@ namespace Template
         {
             //***Database connection***//
             services.AddDbContext<DBTemplateContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TemplateDB")).EnableSensitiveDataLogging());
+
+            NativeInjector.RegisterServices(services);
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
