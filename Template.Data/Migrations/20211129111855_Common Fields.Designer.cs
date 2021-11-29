@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(DBTemplateContext))]
-    partial class DBTemplateContextModelSnapshot : ModelSnapshot
+    [Migration("20211129111855_Common Fields")]
+    partial class CommonFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace Template.Data.Migrations
                         new
                         {
                             Id = new Guid("6aa22e78-eb19-4a8e-998b-ce8bbe1886f0"),
-                            DateCreated = new DateTime(2021, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "userdefault@template.com",
                             IsDeleted = false,
                             Name = "User Default"

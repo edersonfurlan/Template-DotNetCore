@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Template.Data.Context;
 
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(DBTemplateContext))]
-    partial class DBTemplateContextModelSnapshot : ModelSnapshot
+    [Migration("20211129112130_Updated Default User")]
+    partial class UpdatedDefaultUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
