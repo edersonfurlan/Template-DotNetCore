@@ -6,8 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Template.Application.AutoMapper;
 using Template.Data.Context;
 using Template.IoC;
+using AutoMapper;
 
 namespace Template
 {
@@ -26,7 +28,11 @@ namespace Template
             //***Database connection***//
             services.AddDbContext<DBTemplateContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("TemplateDB")).EnableSensitiveDataLogging());
 
+            //***Injector of Dependency***//
             NativeInjector.RegisterServices(services);
+
+            //***Configuration of AutoMapper***//
+            services.AddAutoMapper(typeof(AutoMapperSetup));
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
