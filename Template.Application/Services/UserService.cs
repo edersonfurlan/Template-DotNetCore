@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Template.Application.Interfaces;
 using Template.Application.ViewModels;
+using Template.Auth.Services;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces;
 
@@ -88,6 +89,16 @@ namespace Template.Application.Services
                 throw new System.Exception("User not found");
                         
             return this.userRepository.Delete(_user);
+        }
+
+        public UserAuthenticateResponseViewModel Authenticate(UserAuthenticateRequestViewModel user)
+        {
+            User _user = this.userRepository.Find(x => !x.IsDeleted && x.Email.ToLower() == user.Email.ToLower());
+
+            if (_user == null)
+                throw new Exception("User not found");
+
+            return new UserAuthenticateResponseViewModel(mapper.Map<UserViewModel>(_user),TokenService.GenerateToken(_user));
         }
     }
 }
