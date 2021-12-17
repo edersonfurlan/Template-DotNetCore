@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Template.Application.Interfaces;
 using Template.Application.ViewModels;
 using Template.Auth.Services;
 using Template.Domain.Entities;
 using Template.Domain.Interfaces;
+using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace Template.Application.Services
 {
@@ -46,6 +48,8 @@ namespace Template.Application.Services
 
             if (userViewModel.Id != Guid.Empty)
                 throw new Exception("UserId must be empty");
+
+            Validator.ValidateObject(userViewModel, new ValidationContext(userViewModel), true);
 
             User _user = mapper.Map<User>(userViewModel);
 
